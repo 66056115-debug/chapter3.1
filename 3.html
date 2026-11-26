@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมเศรษฐี: บทที่ 3 การบริหารเงินสดและสินทรัพย์สภาพคล่อง</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           CUSTOM STYLES & NEON GEN-Z ANIMATIONS
+           ========================================================= */
+        :root {
+            --neon-gold: #ffd700;
+            --neon-cyan: #00f0ff;
+            --neon-pink: #ff71ce;
+            --neon-green: #00ff9d;
+            --neon-red: #ff476f;
+            --bg-deep: #080416;
+            --bg-card: rgba(20, 14, 48, 0.78);
+        }
+
+        * {
+            font-family: 'Prompt', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Cosmic Neon Background */
+        .bg-cosmic {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.25) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.18) 0%, transparent 45%),
+                        radial-gradient(circle at 50% 85%, rgba(255, 113, 206, 0.2) 0%, transparent 50%),
+                        linear-gradient(135deg, #070314 0%, #11082d 50%, #090d24 100%);
+        }
+
+        .floating-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: 0.4;
+            z-index: -1;
+            pointer-events: none;
+            animation: floatOrb 18s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 320px;
+            height: 320px;
+            background: #7c3aed;
+            top: -80px;
+            left: -80px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 280px;
+            height: 280px;
+            background: #00f0ff;
+            bottom: -60px;
+            right: -60px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 240px;
+            height: 240px;
+            background: #ff71ce;
+            top: 40%;
+            left: 55%;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, -30px) scale(1.12); }
+            100% { transform: translate(-30px, 40px) scale(0.95); }
+        }
+
+        /* Subtle Cyber Grid Overlay */
+        .cyber-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Neon Card */
+        .glass-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .neon-border-gold {
+            border: 1.5px solid rgba(255, 215, 0, 0.55);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 12px rgba(255, 215, 0, 0.08);
+        }
+
+        .neon-border-cyan {
+            border: 1.5px solid rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.18);
+        }
+
+        /* Glowing Text */
+        .text-glow-gold {
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.7), 0 0 28px rgba(255, 165, 0, 0.4);
+        }
+
+        .text-glow-cyan {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.75);
+        }
+
+        /* Millionaire Option Button (Modern Chamfered/Pill Hybrid) */
+        .option-btn {
+            position: relative;
+            background: linear-gradient(135deg, rgba(28, 21, 66, 0.92) 0%, rgba(16, 12, 42, 0.95) 100%);
+            border: 1.5px solid rgba(0, 240, 255, 0.35);
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow: hidden;
+        }
+
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.12), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .option-btn:hover:not(:disabled)::before {
+            transform: translateX(100%);
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--neon-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(255, 215, 0, 0.25), inset 0 0 12px rgba(255, 215, 0, 0.1);
+        }
+
+        .option-btn:active:not(:disabled) {
+            transform: translateY(0px) scale(0.99);
+        }
+
+        .option-btn.correct {
+            background: linear-gradient(135deg, rgba(6, 78, 59, 0.95) 0%, rgba(4, 120, 87, 0.9) 100%) !important;
+            border-color: var(--neon-green) !important;
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.45) !important;
+            animation: pulseCorrect 0.5s ease;
+        }
+
+        .option-btn.wrong {
+            background: linear-gradient(135deg, rgba(136, 19, 55, 0.95) 0%, rgba(190, 18, 60, 0.85) 100%) !important;
+            border-color: var(--neon-red) !important;
+            box-shadow: 0 0 25px rgba(255, 71, 111, 0.45) !important;
+            animation: shakeWrong 0.4s ease;
+        }
+
+        .option-btn.eliminated {
+            opacity: 0.22;
+            pointer-events: none;
+            filter: grayscale(80%);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes pulseCorrect {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes shakeWrong {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-6px); }
+            40% { transform: translateX(6px); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+        }
+
+        /* Start Button Gradient Glow */
+        .btn-cyber-gold {
+            background: linear-gradient(135deg, #ffd700 0%, #ff9d00 50%, #ff71ce 100%);
+            background-size: 200% 200%;
+            color: #0b061d;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.45);
+            transition: all 0.3s ease;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        .btn-cyber-gold:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 0 38px rgba(255, 215, 0, 0.7), 0 0 18px rgba(255, 113, 206, 0.5);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Logo Float */
+        .logo-float {
+            animation: logoBob 3.5s ease-in-out infinite;
+        }
+
+        @keyframes logoBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Ladder Active Pulse */
+        .ladder-active {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.28) 0%, rgba(255, 157, 0, 0.18) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.85);
+            box-shadow: 0 0 14px rgba(255, 215, 0, 0.35);
+        }
+
+        .ladder-correct {
+            background: rgba(0, 255, 157, 0.14);
+            border: 1px solid rgba(0, 255, 157, 0.45);
+        }
+
+        .ladder-wrong {
+            background: rgba(255, 71, 111, 0.14);
+            border: 1px solid rgba(255, 71, 111, 0.4);
+        }
+
+        /* Fade In Animation */
+        .fade-in-up {
+            animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 10, 35, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 240, 255, 0.35);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 215, 0, 0.6);
+        }
+
+        /* Confetti Canvas */
+        #confettiCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 60;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pink-500/40 selection:text-white">
+
+    <!-- Background Layers -->
+    <div class="bg-cosmic"></div>
+    <div class="cyber-grid"></div>
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+
+    <!-- Confetti Canvas (for Victory Celebration) -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- =========================================================
+         TOP NAVIGATION / AUDIO CONTROLS
+         ========================================================= -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-[#09051a]/75 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2">
+            <!-- Brand Mini -->
+            <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-yellow-400 via-amber-500 to-pink-500 flex items-center justify-center shadow-lg shadow-amber-500/30 shrink-0">
+                    <i class="fa-solid fa-crown text-[#09051a] text-base"></i>
+                </div>
+                <div class="truncate">
+                    <div class="text-xs sm:text-sm font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-cyan-300 to-pink-300 truncate">
+                        เกมเศรษฐี: บทที่ 3 การบริหารเงินสดฯ
+                    </div>
+                    <div class="text-[10px] sm:text-xs text-slate-400 truncate">
+                        Modern Gen-Z Neon Edition • 15 ข้อ
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio Controls (BGM & SFX) -->
+            <div class="flex items-center gap-2 shrink-0">
+                <button id="btnToggleBgm" onclick="toggleBgm()"
+                    class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-cyan-400/40 bg-cyan-500/10 text-cyan-200 hover:bg-cyan-500/20 transition cursor-pointer"
+                    title="เปิด/ปิดเพลงประกอบ">
+                    <i id="iconBgm" class="fa-solid fa-music"></i>
+                    <span class="hidden sm:inline" id="labelBgm">เพลง: เปิด</span>
+                </button>
+                <button id="btnToggleSfx" onclick="toggleSfx()"
+                    class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-pink-400/40 bg-pink-500/10 text-pink-200 hover:bg-pink-500/20 transition cursor-pointer"
+                    title="เปิด/ปิดซาวด์เอฟเฟกต์">
+                    <i id="iconSfx" class="fa-solid fa-volume-high"></i>
+                    <span class="hidden sm:inline" id="labelSfx">เอฟเฟกต์: เปิด</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         SCREEN 1: START SCREEN
+         ========================================================= -->
+    <main id="startScreen" class="max-w-4xl mx-auto px-4 py-8 sm:py-12 flex flex-col items-center justify-center min-h-[calc(100vh-64px)]">
+        <div class="glass-panel neon-border-gold rounded-3xl p-6 sm:p-10 w-full text-center relative overflow-hidden fade-in-up">
+            <!-- Decorative corner glows -->
+            <div class="absolute -top-16 -right-16 w-44 h-44 bg-yellow-400/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-16 -left-16 w-44 h-44 bg-cyan-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Glowing Millionaire SVG Emblem -->
+            <div class="logo-float inline-flex items-center justify-center mb-5 relative">
+                <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-tr from-indigo-950 via-purple-900 to-cyan-900 p-1 shadow-[0_0_40px_rgba(255,215,0,0.45)] border-2 border-yellow-400/80 flex items-center justify-center">
+                    <svg viewBox="0 0 120 120" class="w-24 h-24 sm:w-28 sm:h-28">
+                        <defs>
+                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#fff59d"/>
+                                <stop offset="50%" stop-color="#ffd700"/>
+                                <stop offset="100%" stop-color="#ff8f00"/>
+                            </linearGradient>
+                            <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00f0ff"/>
+                                <stop offset="100%" stop-color="#ff71ce"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Outer Ring -->
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="url(#neonGrad)" stroke-width="2.5" stroke-dasharray="6 4"/>
+                        <circle cx="60" cy="60" r="46" fill="rgba(11,6,29,0.85)" stroke="url(#goldGrad)" stroke-width="2"/>
+                        <!-- Crown + Baht Symbol -->
+                        <path d="M35 50 L43 32 L60 44 L77 32 L85 50 Z" fill="url(#goldGrad)"/>
+                        <rect x="35" y="52" width="50" height="5" rx="2.5" fill="url(#goldGrad)"/>
+                        <text x="60" y="87" text-anchor="middle" font-size="30" font-weight="800" fill="url(#goldGrad)" font-family="Prompt, sans-serif">฿1M</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Main Title -->
+            <div class="inline-block px-3.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 text-xs sm:text-sm font-medium mb-3">
+                ✨ QUIZ GAME • GEN-Z NEON EDITION ✨
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-200 to-pink-300 text-glow-gold mb-2">
+                เกมเศรษฐีการเงิน
+            </h1>
+            <h2 class="text-base sm:text-xl font-semibold text-cyan-300 mb-6">
+                บทที่ 3 การบริหารเงินสดและสินทรัพย์สภาพคล่อง
+            </h2>
+
+            <!-- Game Rules Highlights -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-7 text-left">
+                <div class="rounded-2xl bg-white/5 border border-white/10 p-4 flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 shrink-0">
+                        <i class="fa-solid fa-infinity text-lg"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm text-emerald-300">ไม่มี Game Over!</div>
+                        <p class="text-xs text-slate-300 mt-0.5">ตอบครบทั้ง 15 ข้อ ตอบผิดก็ไปต่อได้ทันที พร้อมเฉลยเหตุผลทุกข้อ</p>
+                    </div>
+                </div>
+                <div class="rounded-2xl bg-white/5 border border-white/10 p-4 flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-yellow-500/20 border border-yellow-400/40 flex items-center justify-center text-yellow-300 shrink-0">
+                        <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm text-yellow-300">3 ตัวช่วยสุดปัง</div>
+                        <p class="text-xs text-slate-300 mt-0.5">50:50 ตัดช้อยส์, ถามผู้ชม (กราฟโหวต) และโทรหาเพื่อนสายการเงิน</p>
+                    </div>
+                </div>
+                <div class="rounded-2xl bg-white/5 border border-white/10 p-4 flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-pink-500/20 border border-pink-400/40 flex items-center justify-center text-pink-300 shrink-0">
+                        <i class="fa-solid fa-book-open-reader text-lg"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm text-pink-300">สรุปบทเรียนตอนจบ</div>
+                        <p class="text-xs text-slate-300 mt-0.5">เล่นจบรับสรุปเนื้อหาบทที่ 3 ฉบับอ่านง่าย + ตรวจคำตอบครบ 15 ข้อ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music Notice -->
+            <p class="text-xs sm:text-sm text-slate-400 mb-6">
+                <i class="fa-solid fa-headphones text-cyan-400 mr-1"></i>
+                แนะนำให้เปิดเสียง! มีเพลงประกอบ Synth-Pop / Lo-fi Upbeat และซาวด์เอฟเฟกต์สุดเพลิน
+            </p>
+
+            <!-- Start Button -->
+            <button onclick="startGame()"
+                class="btn-cyber-gold px-10 py-4 rounded-2xl font-extrabold text-lg sm:text-xl tracking-wide inline-flex items-center gap-3 cursor-pointer">
+                <i class="fa-solid fa-play"></i>
+                <span>เริ่มเกมเลย!</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- =========================================================
+         SCREEN 2: GAMEPLAY SCREEN
+         ========================================================= -->
+    <section id="gameScreen" class="hidden max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-6">
+        <!-- Mobile Top Compact Ladder & Stats -->
+        <div class="lg:hidden mb-4 space-y-3">
+            <!-- Stats Bar -->
+            <div class="glass-panel rounded-2xl p-3 flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-bold">
+                        ข้อ <span id="mobQNum">1</span>/15
+                    </span>
+                    <span class="text-xs text-slate-300">
+                        ถูก <strong id="mobCorrectCount" class="text-emerald-400">0</strong> ข้อ
+                    </span>
+                </div>
+                <div class="text-right">
+                    <div class="text-[10px] text-slate-400">เงินรางวัลสะสม</div>
+                    <div id="mobTotalPrize" class="text-sm font-extrabold text-yellow-300 text-glow-gold">฿0</div>
+                </div>
+            </div>
+
+            <!-- Mobile Horizontal Mini-Ladder -->
+            <div class="glass-panel rounded-2xl p-2.5 overflow-x-auto">
+                <div id="mobileLadder" class="flex items-center gap-1.5 min-w-max">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Desktop 2-Column Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+            <!-- LEFT / MAIN COLUMN: Question, Lifelines, Options, Explanation -->
+            <div class="lg:col-span-8 xl:col-span-9 space-y-4">
+
+                <!-- Top Bar: Current Question Prize + Lifelines -->
+                <div class="glass-panel rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+                    <!-- Question Badge & Current Step Value -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-yellow-400/25 to-amber-600/20 border border-yellow-400/60 flex flex-col items-center justify-center shrink-0">
+                            <span class="text-[10px] text-yellow-200 leading-none">ข้อที่</span>
+                            <span id="qNumberDisplay" class="text-xl font-extrabold text-yellow-300 leading-tight">1</span>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400">มูลค่ารางวัลข้อนี้</div>
+                            <div id="qPrizeDisplay" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-400">
+                                ฿1,000
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3 Lifelines -->
+                    <div class="flex items-center gap-2 sm:gap-2.5">
+                        <button id="life5050" onclick="useLifeline5050()"
+                            class="group flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-indigo-950/80 border border-cyan-400/50 text-cyan-200 hover:bg-cyan-500/20 hover:border-cyan-300 transition text-xs sm:text-sm font-bold cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-scissors text-cyan-400 group-hover:scale-110 transition"></i>
+                            <span>50:50</span>
+                        </button>
+                        <button id="lifeAudience" onclick="useLifelineAudience()"
+                            class="group flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-indigo-950/80 border border-pink-400/50 text-pink-200 hover:bg-pink-500/20 hover:border-pink-300 transition text-xs sm:text-sm font-bold cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-users text-pink-400 group-hover:scale-110 transition"></i>
+                            <span class="hidden xs:inline sm:inline">ถามผู้ชม</span>
+                        </button>
+                        <button id="lifeFriend" onclick="useLifelineFriend()"
+                            class="group flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl bg-indigo-950/80 border border-yellow-400/50 text-yellow-200 hover:bg-yellow-500/20 hover:border-yellow-300 transition text-xs sm:text-sm font-bold cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-phone-volume text-yellow-400 group-hover:scale-110 transition"></i>
+                            <span class="hidden xs:inline sm:inline">โทรหาเพื่อน</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+                    <div id="progressBar" class="h-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 transition-all duration-500" style="width: 6.66%"></div>
+                </div>
+
+                <!-- Question Card -->
+                <div id="questionCard" class="glass-panel neon-border-cyan rounded-3xl p-5 sm:p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-400/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="text-xs font-semibold uppercase tracking-widest text-cyan-300/80 mb-2 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        คำถามบทที่ 3 การบริหารเงินสดและสินทรัพย์สภาพคล่อง
+                    </div>
+                    <h2 id="questionText" class="text-lg sm:text-2xl font-bold text-white leading-relaxed">
+                        <!-- Question text injected here -->
+                    </h2>
+                </div>
+
+                <!-- 4 Options Grid -->
+                <div id="optionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                    <!-- Option buttons injected via JS -->
+                </div>
+
+                <!-- Immediate Feedback & Explanation Box (Hidden until answered) -->
+                <div id="feedbackBox" class="hidden glass-panel rounded-3xl p-5 sm:p-6 fade-in-up">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="flex items-start gap-3.5">
+                            <div id="feedbackIcon" class="w-11 h-11 rounded-2xl flex items-center justify-center text-xl shrink-0">
+                                <!-- Icon -->
+                            </div>
+                            <div>
+                                <div id="feedbackTitle" class="text-base sm:text-lg font-extrabold mb-1">
+                                    <!-- Title -->
+                                </div>
+                                <p id="feedbackExplanation" class="text-sm sm:text-base text-slate-200 leading-relaxed">
+                                    <!-- Explanation -->
+                                </p>
+                            </div>
+                        </div>
+                        <button id="btnNextQuestion" onclick="nextQuestion()"
+                            class="btn-cyber-gold px-6 py-3 rounded-2xl font-bold text-sm sm:text-base shrink-0 inline-flex items-center justify-center gap-2 cursor-pointer">
+                            <span id="btnNextLabel">ข้อถัดไป</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN (Desktop): Real-time Stats + 15-Step Money Ladder -->
+            <aside class="hidden lg:flex lg:col-span-4 xl:col-span-3 flex-col gap-4">
+                <!-- Real-time Scoreboard -->
+                <div class="glass-panel neon-border-gold rounded-2xl p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs text-slate-400">เงินรางวัลสะสม</span>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold">
+                            ถูก <span id="deskCorrectCount">0</span>/<span id="deskAnsweredCount">0</span>
+                        </span>
+                    </div>
+                    <div id="deskTotalPrize" class="text-2xl xl:text-3xl font-extrabold text-yellow-300 text-glow-gold">
+                        ฿0
+                    </div>
+                </div>
+
+                <!-- 15-Step Money Ladder -->
+                <div class="glass-panel rounded-2xl p-3.5">
+                    <div class="text-xs font-bold text-cyan-300 uppercase tracking-wider mb-2.5 flex items-center justify-between px-1">
+                        <span><i class="fa-solid fa-stairs mr-1.5"></i>บันไดเงินรางวัล 15 ขั้น</span>
+                        <span class="text-[10px] text-slate-400">สูงสุด ฿1M</span>
+                    </div>
+                    <div id="desktopLadder" class="flex flex-col gap-1">
+                        <!-- Populated via JS (15 down to 1) -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SCREEN 3: END SCREEN & STUDY SUMMARY
+         ========================================================= -->
+    <section id="endScreen" class="hidden max-w-5xl mx-auto px-3 sm:px-6 py-6 sm:py-10">
+        <!-- Celebration Hero Card -->
+        <div class="glass-panel neon-border-gold rounded-3xl p-6 sm:p-9 text-center relative overflow-hidden mb-6 fade-in-up">
+            <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-yellow-400/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div id="rankEmoji" class="text-5xl sm:text-6xl mb-3 logo-float inline-block">🏆</div>
+            <div class="text-xs sm:text-sm font-bold uppercase tracking-widest text-cyan-300 mb-1">
+                ภารกิจเสร็จสมบูรณ์ ครบทั้ง 15 ข้อ!
+            </div>
+            <h2 id="rankTitle" class="text-2xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-200 to-pink-300 text-glow-gold mb-2">
+                ระดับมหาเศรษฐีสายการเงิน
+            </h2>
+            <p id="rankSubtitle" class="text-sm sm:text-base text-slate-300 max-w-xl mx-auto mb-6">
+                สุดยอดมาก! คุณเข้าใจหลักการบริหารเงินสดและสินทรัพย์สภาพคล่องได้อย่างยอดเยี่ยม
+            </p>
+
+            <!-- Summary Metrics -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto mb-7">
+                <div class="rounded-2xl bg-white/5 border border-emerald-400/30 p-4">
+                    <div class="text-xs text-slate-400 mb-1">คะแนนที่ทำได้</div>
+                    <div id="finalScoreText" class="text-3xl font-extrabold text-emerald-400">15 / 15</div>
+                    <div id="finalPercentText" class="text-xs text-emerald-200/80 mt-0.5">คิดเป็น 100%</div>
+                </div>
+                <div class="rounded-2xl bg-white/5 border border-yellow-400/40 p-4">
+                    <div class="text-xs text-slate-400 mb-1">เงินรางวัลสะสมรวม</div>
+                    <div id="finalPrizeText" class="text-2xl sm:text-3xl font-extrabold text-yellow-300 text-glow-gold">฿0</div>
+                    <div class="text-xs text-yellow-200/80 mt-0.5">สะสมจากทุกข้อที่ตอบถูก</div>
+                </div>
+                <div class="rounded-2xl bg-white/5 border border-pink-400/30 p-4">
+                    <div class="text-xs text-slate-400 mb-1">ตัวช่วยที่ใช้ไป</div>
+                    <div id="finalLifelinesText" class="text-3xl font-extrabold text-pink-300">0 / 3</div>
+                    <div class="text-xs text-pink-200/80 mt-0.5">50:50 • ผู้ชม • เพื่อน</div>
+                </div>
+            </div>
+
+            <!-- Replay Button -->
+            <button onclick="restartGame()"
+                class="btn-cyber-gold px-8 py-3.5 rounded-2xl font-extrabold text-base sm:text-lg inline-flex items-center gap-2.5 cursor-pointer">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span>เล่นใหม่อีกครั้ง</span>
+            </button>
+        </div>
+
+        <!-- Tabs Navigation (Study Summary vs Review Answers) -->
+        <div class="flex flex-wrap items-center justify-center gap-2.5 mb-5">
+            <button id="tabBtnSummary" onclick="switchEndTab('summary')"
+                class="px-5 py-3 rounded-2xl font-bold text-sm sm:text-base transition flex items-center gap-2 cursor-pointer border-2 border-cyan-400 bg-cyan-500/20 text-cyan-200 shadow-[0_0_18px_rgba(0,240,255,0.25)]">
+                <i class="fa-solid fa-book-open"></i>
+                <span>สรุปบทเรียน บทที่ 3 ไว้อ่านทบทวน</span>
+            </button>
+            <button id="tabBtnReview" onclick="switchEndTab('review')"
+                class="px-5 py-3 rounded-2xl font-bold text-sm sm:text-base transition flex items-center gap-2 cursor-pointer border-2 border-white/15 bg-white/5 text-slate-300 hover:bg-white/10">
+                <i class="fa-solid fa-list-check"></i>
+                <span>ตรวจคำตอบทั้ง 15 ข้อ</span>
+            </button>
+        </div>
+
+        <!-- TAB 1: STUDY SUMMARY CARDS -->
+        <div id="tabContentSummary" class="grid grid-cols-1 md:grid-cols-2 gap-4 fade-in-up">
+            <!-- Card 1 -->
+            <div class="glass-panel rounded-3xl p-5 sm:p-6 border-t-4 border-t-cyan-400">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-cyan-200">1. ปัญหาเงินขาดมือ & เงินสด vs สินทรัพย์สภาพคล่อง</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-slate-200 leading-relaxed">
+                    <li><strong class="text-yellow-300">ทำไมเงินขาดมือ?:</strong> รายจ่ายมาได้ทุกวัน (ทั้งค่าอาหาร/เดินทาง และเรื่องฉุกเฉิน) แต่รายรับประจำมักมาเป็นรอบ เช่น ปลายเดือน</li>
+                    <li><strong class="text-cyan-300">เงินสด (Cash):</strong> ใช้จ่ายได้ทันที เช่น เหรียญ ธนบัตร ธนาณัติ เช็คถึงกำหนดแต่ยังไม่ฝาก ดราฟต์ธนาคาร <em>(คล่องตัวที่สุด แต่ไม่สร้างรายได้เป็นตัวเงิน)</em></li>
+                    <li><strong class="text-pink-300">สินทรัพย์สภาพคล่อง:</strong> เปลี่ยนเป็นเงินสดได้เร็ว เช่น เงินฝากออมทรัพย์ กระแสรายวัน ฝากประจำ กองทุนรวมบางประเภท <em>(คล่องตัวสูง และอาจให้ผลตอบแทนดีกว่าถือเงินสดเฉยๆ)</em></li>
+                </ul>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-panel rounded-3xl p-5 sm:p-6 border-t-4 border-t-pink-400">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-300 flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-pink-200">2. 3 เหตุผลหลักในการถือเงินสด</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-slate-200 leading-relaxed">
+                    <li><strong class="text-emerald-300">1) ใช้จ่ายประจำ:</strong> ค่าซื้อของ ค่าเดินทาง Pocket money (ปัจจุบัน e-wallet และ ATM ช่วยลดการพกเงินสด)</li>
+                    <li><strong class="text-amber-300">2) สำรองฉุกเฉิน:</strong> เผื่อป่วย ตกงาน ภัยธรรมชาติ หรือรายจ่ายเกินงบ จะได้ไม่ต้องรีบขายทรัพย์สินใหญ่</li>
+                    <li><strong class="text-pink-300">3) สะสมเพื่ออนาคต:</strong> เก็บเงินซื้อของชิ้นใหญ่ (บ้าน รถ คอมพิวเตอร์) <span class="underline decoration-pink-400">ข้อควรระวัง: ภาวะเงินเฟ้อทำให้มูลค่าเงินลดลง</span></li>
+                </ul>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-panel rounded-3xl p-5 sm:p-6 border-t-4 border-t-yellow-400">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-yellow-500/20 text-yellow-300 flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-yellow-200">3. บริหารเงินสดให้สมดุล & 3 ขั้นคิด</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-slate-200 leading-relaxed">
+                    <li><strong class="text-yellow-300">งบประมาณเงินสด (Cash Budget):</strong> เครื่องมือหลักที่ทำให้รู้ช่วงเงินรับมากกว่าจ่าย วางแผนใช้เงินส่วนเกิน และลดโอกาสขาดสภาพคล่อง</li>
+                    <li><strong class="text-emerald-300">เร่งเงินเข้า:</strong> เก็บเงินสด/รับโอนมือถือ ให้ส่วนลดคนจ่ายเร็ว รีบนำเช็คไปฝาก</li>
+                    <li><strong class="text-rose-300">คุมเงินออก:</strong> ชะลอการจ่ายให้นานที่สุดเท่าที่ไม่เสียเครดิต จ่ายวันครบกำหนดหรือวันสุดท้ายที่ได้ส่วนลด และลดรายจ่ายโดยไม่ลดคุณภาพชีวิต</li>
+                    <li><strong class="text-cyan-300">3 ขั้นคิดก่อนบริหาร:</strong> ① เลือกผลตอบแทนที่พอใจ ② หาข้อมูลใหม่ๆ เสมอ ③ จัดสรรเงินให้สมดุลทั้งผลตอบแทน ความปลอดภัย และความคล่องตัว</li>
+                </ul>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="glass-panel rounded-3xl p-5 sm:p-6 border-t-4 border-t-purple-400">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-money-check-dollar"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-purple-200">4. บัญชีเงินฝากและเช็ค</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-slate-200 leading-relaxed">
+                    <li><strong class="text-cyan-300">ออมทรัพย์:</strong> ฝากถอนสะดวก ดอกเบี้ยต่ำ เหมาะกับเงินใช้บ่อย</li>
+                    <li><strong class="text-yellow-300">ฝากประจำ:</strong> กำหนดเวลา/ขั้นต่ำ ดอกเบี้ยสูงกว่า เหมาะกับเงินเย็น</li>
+                    <li><strong class="text-pink-300">กระแสรายวัน:</strong> ใช้เช็คสั่งจ่าย <u>ไม่มีดอกเบี้ย</u> ปัจจุบันนิยมลดลงเพราะ Mobile Banking</li>
+                    <li><strong class="text-purple-300">เรื่องเช็คต้องรู้:</strong> มี 4 ฝ่าย (ผู้สั่งจ่าย, ผู้รับเงิน, ธนาคารผู้ส่งเรียกเก็บ=ธ.ผู้รับเงิน, ธนาคารผู้จ่าย=ธ.ผู้สั่งจ่าย) • <strong>เช็คขีดคร่อม</strong>ต้องฝากเข้าบัญชีก่อนเบิกสด • <span class="text-yellow-300 font-semibold">เช็คมีอายุไม่เกิน 6 เดือน</span></li>
+                </ul>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="glass-panel rounded-3xl p-5 sm:p-6 border-t-4 border-t-emerald-400">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-emerald-200">5. แหล่งพักเงิน & สินทรัพย์สภาพคล่องอื่นๆ</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-slate-200 leading-relaxed">
+                    <li><strong class="text-yellow-300">บัตรเงินฝาก (NCD):</strong> ธนาคารออก ดอกเบี้ยตายตัว ซื้อขายเปลี่ยนมือได้ ขั้นต่ำสูง (~5 แสนบาท) ถือครบกำหนดรับเงินต้น+ดอกเบี้ย</li>
+                    <li><strong class="text-pink-300">สลากออมทรัพย์:</strong> ได้ดอกเบี้ย+ลุ้นรางวัล+คุ้มครองเงินต้น ขายโดย <strong>ออมสิน, ธ.ก.ส. และ ธอส.</strong></li>
+                    <li><strong class="text-cyan-300">ตั๋วแลกเงิน:</strong> ธนาคารพาณิชย์ออกระดมทุน ผู้ลงทุนเป็นเจ้าหนี้ เสี่ยงต่ำ ใช้เงินค่อนข้างสูง</li>
+                    <li><strong class="text-emerald-300">ตั๋วเงินคลัง:</strong> รัฐบาลออกกู้ระยะสั้น อายุ ≤ 1 ปี เสี่ยงต่ำมาก ผลตอบแทนเป็น <em>ส่วนลดจากราคาหน้าตั๋ว</em></li>
+                    <li><strong class="text-indigo-300">กองทุนรวมตลาดเงิน:</strong> ลงทุนเงินฝาก/ตราสารหนี้คุณภาพดี ผันผวนต่ำ สภาพคล่องสูง ถอนได้ทุกวันทำการถัดไป</li>
+                </ul>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="glass-panel rounded-3xl p-5 sm:p-6 border-t-4 border-t-amber-400">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-lg shrink-0">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-amber-200">6. ความปลอดภัยของเงินฝาก (สคฝ.)</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-slate-200 leading-relaxed">
+                    <li><strong class="text-amber-300">วงเงินคุ้มครอง:</strong> ไม่เกิน <strong>1 ล้านบาท</strong> ต่อ 1 รายผู้ฝาก ต่อ 1 สถาบันการเงิน (ใช้ตั้งแต่ 11 ส.ค. 2564)</li>
+                    <li><strong class="text-emerald-300">การรับเงินคืน:</strong> หากสถาบันการเงินถูกเพิกถอนใบอนุญาต ผู้ฝากไม่ต้องยื่นคำขอเอง จะได้รับคืนภายใน <strong>30 วัน</strong> ตามกฎหมาย</li>
+                    <li><strong class="text-cyan-300">4 ธนาคารที่ไม่อยู่ใต้ พ.ร.บ. สคฝ.:</strong> ได้แก่ <strong>ธนาคารออมสิน, ธ.ก.ส., ธอส. และธนาคารอิสลามแห่งประเทศไทย</strong> เพราะรัฐบาลเป็นผู้คุ้มครองเงินฝากให้โดยตรง</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAB 2: REVIEW ALL 15 ANSWERS -->
+        <div id="tabContentReview" class="hidden space-y-3 fade-in-up">
+            <!-- Populated via JS -->
+        </div>
+    </section>
+
+    <!-- =========================================================
+         MODALS FOR LIFELINES (Audience Poll & Phone a Friend)
+         ========================================================= -->
+    <div id="lifelineModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+        <div class="glass-panel neon-border-cyan rounded-3xl max-w-md w-full p-6 relative fade-in-up">
+            <button onclick="closeLifelineModal()"
+                class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modalHeader" class="flex items-center gap-3 mb-4">
+                <!-- Dynamic Icon & Title -->
+            </div>
+
+            <div id="modalBody" class="mb-5">
+                <!-- Dynamic Content (Poll Bars or Friend Chat) -->
+            </div>
+
+            <button onclick="closeLifelineModal()"
+                class="w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-400 hover:to-indigo-400 text-white font-bold text-sm transition cursor-pointer">
+                รับทราบ! กลับไปตอบคำถาม
+            </button>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         JAVASCRIPT LOGIC (Questions, Game Engine, Web Audio API)
+         ========================================================= -->
+    <script>
+        /* =========================================================
+           1. QUESTION BANK (15 Questions - Chapter 3 Cash Management)
+           ========================================================= */
+        const PRIZE_LADDER = [
+            1000, 2000, 5000, 10000, 20000,
+            30000, 50000, 75000, 100000, 150000,
+            200000, 300000, 500000, 750000, 1000000
+        ];
+
+        const CHOICE_LABELS = ['ก', 'ข', 'ค', 'ง'];
+
+        const QUESTIONS = [
+            {
+                q: 'สาเหตุหลักที่ทำให้คนเรามักประสบปัญหา "เงินขาดมือ" หรือขาดสภาพคล่องคือข้อใด?',
+                options: [
+                    'รายจ่ายมาได้ทุกวัน แต่รายรับไม่ได้มาทุกวัน',
+                    'รายรับมีจำนวนน้อยกว่ารายจ่ายประจำเสมอ',
+                    'ธนาคารคิดค่าธรรมเนียมการถอนเงินสดสูงเกินไป',
+                    'การพกพาเงินสดในปัจจุบันทำได้ยากขึ้น'
+                ],
+                answer: 0,
+                explanation: 'รายจ่ายเกิดขึ้นได้ทุกวันทั้งที่คาดเดาได้และฉุกเฉิน แต่รายรับประจำมักมาเป็นรอบ เช่น ปลายเดือน หากไม่วางแผนจึงอาจขาดสภาพคล่องได้',
+                friendHint: 'นึกถึงชีวิตจริงสิแก! ค่าข้าวจ่ายทุกวัน แต่เงินเดือนออกแค่ปลายเดือน ข้อ ก. แน่นอน!'
+            },
+            {
+                q: 'ข้อใดต่อไปนี้จัดเป็น "เงินสด" (Cash) ตามหลักการบริหารเงินสด?',
+                options: [
+                    'เงินฝากประจำและสลากออมทรัพย์',
+                    'ดราฟต์ธนาคารและเช็คถึงกำหนดแต่ยังไม่ฝาก',
+                    'กองทุนรวมตลาดเงินและตั๋วเงินคลัง',
+                    'บัตรเงินฝาก (NCD) และตั๋วแลกเงิน'
+                ],
+                answer: 1,
+                explanation: 'เงินสดคือสิ่งที่ใช้จ่ายได้ทันที ได้แก่ เหรียญ ธนบัตร ธนาณัติ เช็คถึงกำหนดแต่ยังไม่ฝาก และดราฟต์ธนาคาร',
+                friendHint: 'เงินสดคือของที่ใช้จ่ายได้ทันทีเลย เช่น เหรียญ แบงก์ ธนาณัติ ดราฟต์ แล้วก็เช็คที่ถึงกำหนดแล้ว ข้อ ข. ชัวร์!'
+            },
+            {
+                q: 'ความแตกต่างที่สำคัญระหว่าง "เงินสด" กับ "สินทรัพย์สภาพคล่อง" คือข้อใด?',
+                options: [
+                    'เงินสดให้ผลตอบแทนสูงกว่าสินทรัพย์สภาพคล่องเสมอ',
+                    'สินทรัพย์สภาพคล่องไม่สามารถเปลี่ยนเป็นเงินสดได้ภายใน 1 ปี',
+                    'เงินสดคล่องตัวที่สุดแต่ไม่สร้างรายได้เป็นตัวเงิน ส่วนสินทรัพย์สภาพคล่องอาจให้ผลตอบแทนดีกว่า',
+                    'เงินสดมีความเสี่ยงสูงกว่าสินทรัพย์สภาพคล่องทุกประเภท'
+                ],
+                answer: 2,
+                explanation: 'เงินสดคล่องตัวที่สุดแต่ไม่ก่อให้เกิดดอกเบี้ยหรือรายได้เป็นตัวเงิน ส่วนสินทรัพย์สภาพคล่องเปลี่ยนเป็นเงินสดได้เร็วและอาจให้ผลตอบแทนดีกว่า',
+                friendHint: 'ถือแบงก์ไว้ในกระเป๋ามันไม่เกิดดอกเบี้ยนะ แต่สินทรัพย์สภาพคล่องยังพอได้ดอกเบี้ยบ้าง ตอบ ค. เลย!'
+            },
+            {
+                q: 'หากเราถือเงินสดไว้ด้วยเหตุผล "สะสมเพื่ออนาคต" (เช่น เก็บเงินซื้อบ้าน รถ หรือคอมพิวเตอร์) สิ่งที่ต้องระมัดระวังคือข้อใด?',
+                options: [
+                    'การถูกเรียกเก็บภาษีเงินได้ซ้ำซ้อน',
+                    'ภาวะเงินเฟ้อที่ทำให้มูลค่าของเงินลดลง',
+                    'ความคล่องตัวของเงินสดจะหายไป',
+                    'ไม่สามารถนำไปใช้ซื้อของชิ้นใหญ่ได้'
+                ],
+                answer: 1,
+                explanation: 'การถือเงินสดไว้นานๆ เพื่อสะสมในอนาคตต้องระวังภาวะเงินเฟ้อ ซึ่งจะทำให้มูลค่าหรืออำนาจซื้อของเงินลดลง',
+                friendHint: 'เก็บเงินสดไว้นานๆ ข้าวของแพงขึ้นทุกปี มูลค่าเงินมันหดลงเพราะ "เงินเฟ้อ" ไง ข้อ ข. จ้า!'
+            },
+            {
+                q: 'เครื่องมือหลักที่ช่วยบริหารเงินสดให้เงินเข้า-ออกสอดคล้องกัน รู้ช่วงเงินเกิน-เงินขาด และลดโอกาสขาดสภาพคล่องคืออะไร?',
+                options: [
+                    'งบดุลส่วนบุคคล',
+                    'งบประมาณเงินสด (Cash Budget)',
+                    'บัญชีกระแสรายวัน',
+                    'ใบแจ้งหนี้บัตรเครดิต'
+                ],
+                answer: 1,
+                explanation: 'งบประมาณเงินสด (Cash Budget) เป็นเครื่องมือหลักที่ช่วยให้เห็นกระแสเงินสดรับ-จ่าย และวางแผนใช้เงินส่วนเกินได้อย่างเหมาะสม',
+                friendHint: 'ชื่อก็บอกตรงตัวเลยว่าคุมเงินเข้า-ออก ต้องใช้ "งบประมาณเงินสด" หรือ Cash Budget ข้อ ข.!'
+            },
+            {
+                q: 'ข้อใดต่อไปนี้เป็นแนวทางการ "ควบคุมกระแสเงินสดจ่าย" ที่ถูกต้อง?',
+                options: [
+                    'รีบจ่ายหนี้ทุกอย่างก่อนวันครบกำหนดให้เร็วที่สุดเสมอ',
+                    'ยกเลิกค่าใช้จ่ายทุกอย่างแม้จะทำให้คุณภาพชีวิตแย่ลง',
+                    'ชะลอการจ่ายให้นานที่สุดเท่าที่ไม่เสียเครดิต หรือจ่ายในวันครบกำหนด',
+                    'ใช้เงินสดจ่ายแทนการโอนผ่านมือถือทุกครั้ง'
+                ],
+                answer: 2,
+                explanation: 'การคุมเงินออกควรชะลอการจ่ายให้นานที่สุดเท่าที่ไม่เสียเครดิต จ่ายในวันครบกำหนดหรือวันสุดท้ายที่ได้ส่วนลด และลดรายจ่ายโดยไม่กระทบคุณภาพชีวิต',
+                friendHint: 'หลักการบริหารเงินสดคือ เร่งเงินเข้า และชะลอเงินออกให้นานที่สุดเท่าที่ไม่เสียเครดิต ข้อ ค. ถูกต้อง!'
+            },
+            {
+                q: 'บัญชีเงินฝากประเภทใดที่ "ไม่มีดอกเบี้ย" ใช้เช็คในการสั่งจ่าย สะดวกในการทำธุรกิจ และปัจจุบันนิยมลดลงเพราะ Mobile Banking?',
+                options: [
+                    'บัญชีเงินฝากออมทรัพย์',
+                    'บัญชีเงินฝากประจำ',
+                    'บัญชีเงินฝากกระแสรายวัน',
+                    'บัญชีเงินฝากปลอดภาษี'
+                ],
+                answer: 2,
+                explanation: 'บัญชีกระแสรายวันไม่มีดอกเบี้ย ใช้เช็คสั่งจ่ายเป็นเครื่องมือหลัก ปัจจุบันความนิยมลดลงจากการโอนผ่าน Mobile Banking',
+                friendHint: 'บัญชีที่ใช้คู่กับสมุดเช็คแล้วไม่ได้ดอกเบี้ยก็คือ "กระแสรายวัน" นั่นเอง ข้อ ค. จัดไป!'
+            },
+            {
+                q: 'ในการทำธุรกรรมด้วยเช็ค บุคคลหรือหน่วยงานที่เรียกว่า "ธนาคารผู้ส่งเรียกเก็บ" หมายถึงใคร?',
+                options: [
+                    'ธนาคารของผู้รับเงิน',
+                    'ธนาคารของผู้สั่งจ่ายเช็ค',
+                    'เจ้าของบัญชีกระแสรายวันที่เซ็นเช็ค',
+                    'ธนาคารแห่งประเทศไทย'
+                ],
+                answer: 0,
+                explanation: 'ผู้เกี่ยวข้องกับเช็คมี 4 ฝ่าย คือ ผู้สั่งจ่าย, ผู้รับเงิน, ธนาคารผู้ส่งเรียกเก็บ (ธนาคารของผู้รับเงิน) และธนาคารผู้จ่าย (ธนาคารของผู้สั่งจ่าย)',
+                friendHint: 'เวลาเราได้เช็คมา เราก็เอาไปเข้าธนาคารของเรา เพื่อให้ธนาคารเราไป "ส่งเรียกเก็บ" เงินให้ ตอบ ก. เลย!'
+            },
+            {
+                q: '"เช็คขีดคร่อม" มีลักษณะการใช้งานที่สำคัญอย่างไร?',
+                options: [
+                    'สามารถนำไปแลกเป็นเงินสดที่เคาน์เตอร์ธนาคารได้ทันที',
+                    'ต้องนำฝากเข้าบัญชีก่อนจึงจะเบิกเป็นเงินสดได้',
+                    'เป็นเช็คที่ธนาคารออกให้เพื่อใช้เป็นของขวัญเท่านั้น',
+                    'สามารถใช้ได้เฉพาะนิติบุคคลหรือบริษัทขนาดใหญ่เท่านั้น'
+                ],
+                answer: 1,
+                explanation: 'เช็คขีดคร่อมเพิ่มความปลอดภัย โดยต้องฝากเข้าบัญชีก่อนจึงจะเบิกเป็นเงินสดได้ มีทั้งแบบทั่วไปและแบบเฉพาะ',
+                friendHint: 'เช็คขีดคร่อมทำมาเพื่อความปลอดภัย จะเบิกเป็นเงินสดหน้าเคาน์เตอร์เลยไม่ได้ ต้องฝากเข้าบัญชีก่อน ข้อ ข.!'
+            },
+            {
+                q: 'ข้อควรระวังในการใช้เช็ค เช็คมีอายุการใช้งานไม่เกินกี่เดือนนับจากวันที่สั่งจ่าย?',
+                options: [
+                    'ไม่เกิน 1 เดือน',
+                    'ไม่เกิน 3 เดือน',
+                    'ไม่เกิน 6 เดือน',
+                    'ไม่เกิน 12 เดือน'
+                ],
+                answer: 2,
+                explanation: 'ข้อควรระวังของเช็คคือ มีอายุไม่เกิน 6 เดือน ต้องมีลายเซ็นผู้สั่งจ่าย และจำนวนเงินตัวเลขกับตัวหนังสือต้องตรงกัน',
+                friendHint: 'จำง่ายๆ เลย เช็คมีอายุครึ่งปี หรือ 6 เดือนจ้า ถ้าเกินจะขึ้นเงินไม่ได้ ตอบ ค.!'
+            },
+            {
+                q: 'ข้อใดกล่าวถูกต้องเกี่ยวกับ "บัตรเงินฝาก" (NCD)?',
+                options: [
+                    'มีขั้นต่ำในการลงทุนน้อยมาก เริ่มต้นเพียง 100 บาท',
+                    'ออกโดยธนาคาร ดอกเบี้ยตายตัว ซื้อขายเปลี่ยนมือได้ และขั้นต่ำประมาณ 5 แสนบาท',
+                    'ให้ทั้งดอกเบี้ยและสิทธิ์ในการลุ้นรางวัลทุกเดือน',
+                    'สามารถถอนเงินต้นบางส่วนออกมาใช้เมื่อไหร่ก็ได้โดยไม่เสียดอกเบี้ย'
+                ],
+                answer: 1,
+                explanation: 'บัตรเงินฝาก (NCD) ออกโดยธนาคาร ดอกเบี้ยตายตัว ซื้อขายเปลี่ยนมือได้ ขั้นต่ำค่อนข้างสูงประมาณ 5 แสนบาท และถือครบกำหนดจึงรับเงินต้นและดอกเบี้ยทั้งหมด',
+                friendHint: 'NCD เป็นบัตรเงินฝากของคนมีทุนหน่อย ขั้นต่ำราวๆ 5 แสน ซื้อขายเปลี่ยนมือได้ด้วย ข้อ ข. ชัดเจน!'
+            },
+            {
+                q: 'สถาบันการเงินกลุ่มใดต่อไปนี้ที่จำหน่าย "สลากออมทรัพย์" ซึ่งได้ทั้งดอกเบี้ย สิทธิ์ลุ้นรางวัล และคุ้มครองเงินต้น?',
+                options: [
+                    'ธนาคารกรุงเทพ, กสิกรไทย และไทยพาณิชย์',
+                    'ธนาคารกรุงไทย, ทหารไทยธนชาต และกรุงศรีอยุธยา',
+                    'ธนาคารออมสิน, ธ.ก.ส. และ ธอส.',
+                    'ธนาคารแห่งประเทศไทย และกระทรวงการคลัง'
+                ],
+                answer: 2,
+                explanation: 'สลากออมทรัพย์จำหน่ายโดย ธนาคารออมสิน, ธ.ก.ส. และ ธอส. เหมาะกับคนอยากออมแบบสนุก (หากไถ่ถอนก่อนกำหนดอาจเสียสิทธิ์ดอกเบี้ย)',
+                friendHint: 'สลากออมสิน สลาก ธ.ก.ส. และสลาก ธอส. ไงแก สายลุ้นโชคแบบเงินต้นไม่หาย ข้อ ค.!'
+            },
+            {
+                q: 'ตราสารทางการเงินใดที่รัฐบาลออกเพื่อกู้ระยะสั้น อายุไม่เกิน 1 ปี ความเสี่ยงต่ำมาก และให้ผลตอบแทนในรูปของ "ส่วนลดจากราคาหน้าตั๋ว"?',
+                options: [
+                    'ตั๋วแลกเงิน',
+                    'ตั๋วเงินคลัง',
+                    'กองทุนรวมตลาดเงิน',
+                    'แคชเชียร์เช็ค'
+                ],
+                answer: 1,
+                explanation: 'ตั๋วเงินคลังออกโดยรัฐบาลเพื่อกู้ระยะสั้น อายุไม่เกิน 1 ปี ความเสี่ยงต่ำมาก ผลตอบแทนอยู่ในรูปส่วนลดจากราคาหน้าตั๋ว',
+                friendHint: 'รัฐบาล (กระทรวงการคลัง) ออกกู้ระยะสั้นไม่เกิน 1 ปี ให้ส่วนลดจากราคาหน้าตั๋ว ก็คือ "ตั๋วเงินคลัง" ข้อ ข.!'
+            },
+            {
+                q: 'ตามเกณฑ์ของสถาบันคุ้มครองเงินฝาก (สคฝ.) ตั้งแต่ 11 ส.ค. 2564 คุ้มครองเงินฝากในวงเงินเท่าใด และผู้ฝากจะได้รับเงินคืนภายในกี่วันหากสถาบันการเงินถูกเพิกถอนใบอนุญาต?',
+                options: [
+                    'ไม่เกิน 1 ล้านบาท ต่อ 1 รายผู้ฝาก ต่อ 1 สถาบันการเงิน และได้คืนภายใน 30 วัน',
+                    'ไม่เกิน 5 ล้านบาท ต่อ 1 บัญชี และได้คืนภายใน 60 วัน',
+                    'ไม่เกิน 1 ล้านบาท ต่อ 1 บัญชี และต้องยื่นคำขอภายใน 15 วัน',
+                    'คุ้มครองเต็มจำนวนไม่จำกัดวงเงิน และได้คืนภายใน 7 วัน'
+                ],
+                answer: 0,
+                explanation: 'สคฝ. คุ้มครองไม่เกิน 1 ล้านบาท ต่อ 1 รายผู้ฝาก ต่อ 1 สถาบันการเงิน ผู้ฝากไม่ต้องยื่นคำขอเอง และได้รับคืนภายใน 30 วันตามกฎหมาย',
+                friendHint: 'จำตัวเลขเป๊ะๆ เลยนะ: 1 ล้านบาท / 1 ราย / 1 สถาบันการเงิน และคืนใน 30 วันแบบไม่ต้องยื่นขอเอง ข้อ ก.!'
+            },
+            {
+                q: 'สถาบันการเงินใดต่อไปนี้ที่ "ไม่อยู่" ภายใต้ พ.ร.บ. สถาบันคุ้มครองเงินฝาก (สคฝ.) เนื่องจากรัฐบาลเป็นผู้คุ้มครองเงินฝากให้โดยตรง?',
+                options: [
+                    'ธนาคารพาณิชย์เอกชนทุกแห่งในไทย',
+                    'บริษัทเงินทุนและบริษัทเครดิตฟองซิเอร์',
+                    'ธนาคารออมสิน, ธ.ก.ส., ธอส. และธนาคารอิสลามแห่งประเทศไทย',
+                    'กองทุนรวมตลาดเงินทุกประเภท'
+                ],
+                answer: 2,
+                explanation: 'ธนาคารออมสิน, ธ.ก.ส., ธอส. และธนาคารอิสลามแห่งประเทศไทย ไม่อยู่ใต้ พ.ร.บ. สคฝ. เพราะรัฐบาลเป็นผู้คุ้มครองเงินฝากให้โดยตรง',
+                friendHint: 'ข้อสุดท้ายแล้ว! ธนาคารเฉพาะกิจของรัฐ 4 แห่งที่รัฐบาลดูแลโดยตรงคือ ออมสิน, ธ.ก.ส., ธอส. และธ.อิสลามฯ ตอบ ค. ปิดจ๊อบเลย!'
+            }
+        ];
+
+        /* =========================================================
+           2. GAME STATE
+           ========================================================= */
+        let currentIndex = 0;
+        let totalPrize = 0;
+        let correctCount = 0;
+        let isAnswered = false;
+        let questionResults = []; // { qIndex, selected, isCorrect, prizeWon }
+        let lifelines = {
+            fifty: true,
+            audience: true,
+            friend: true
+        };
+        let eliminatedIndices = [];
+
+        /* =========================================================
+           3. WEB AUDIO API (Gen-Z Synth-Pop / Lo-fi Upbeat BGM + SFX)
+           ========================================================= */
+        let audioCtx = null;
+        let bgmEnabled = true;
+        let sfxEnabled = true;
+        let bgmTimer = null;
+        let bgmStep = 0;
+        let bgmMasterGain = null;
+
+        function initAudio() {
+            try {
+                if (!audioCtx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioCtx = new AudioContext();
+                    bgmMasterGain = audioCtx.createGain();
+                    bgmMasterGain.gain.value = bgmEnabled ? 0.22 : 0.0;
+                    bgmMasterGain.connect(audioCtx.destination);
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch (e) {
+                console.warn('Web Audio API not supported:', e);
+            }
+        }
+
+        /**
+         * Synth-Pop / Lo-fi Upbeat Step Sequencer (~108 BPM)
+         * Chords: Fmaj7 -> Em7 -> Dm7 -> Cmaj7 (chill, dreamy, upbeat)
+         */
+        const BGM_CHORDS = [
+            [174.61, 220.00, 261.63, 329.63], // Fmaj7
+            [164.81, 196.00, 246.94, 293.66], // Em7
+            [146.83, 174.61, 220.00, 261.63], // Dm7
+            [130.81, 164.81, 196.00, 246.94]  // Cmaj7
+        ];
+        const BGM_BASS = [87.31, 82.41, 73.42, 65.41]; // F2, E2, D2, C2
+        const BGM_MELODY = [
+            523.25, 0, 659.25, 587.33, 523.25, 0, 440.00, 0,
+            493.88, 0, 587.33, 523.25, 493.88, 0, 392.00, 0,
+            440.00, 0, 523.25, 493.88, 440.00, 0, 349.23, 0,
+            392.00, 440.00, 523.25, 0, 659.25, 0, 523.25, 0
+        ];
+
+        function startBgm() {
+            initAudio();
+            if (!audioCtx || bgmTimer) return;
+            const stepMs = 277; // ~108 BPM 8th-note groove
+            bgmStep = 0;
+
+            bgmTimer = setInterval(() => {
+                if (!audioCtx || !bgmEnabled || audioCtx.state !== 'running') return;
+                const now = audioCtx.currentTime;
+                const chordIdx = Math.floor((bgmStep % 32) / 8);
+                const beatInBar = bgmStep % 8;
+
+                // 1) Warm Electric Piano Pad on beat 0 & 4
+                if (beatInBar === 0) {
+                    const notes = BGM_CHORDS[chordIdx];
+                    notes.forEach((freq) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        const filter = audioCtx.createBiquadFilter();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now);
+                        filter.type = 'lowpass';
+                        filter.frequency.setValueAtTime(1100, now);
+
+                        gain.gain.setValueAtTime(0.001, now);
+                        gain.gain.linearRampToValueAtTime(0.11, now + 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.9);
+
+                        osc.connect(filter);
+                        filter.connect(gain);
+                        gain.connect(bgmMasterGain);
+                        osc.start(now);
+                        osc.stop(now + 2.0);
+                    });
+                }
+
+                // 2) Smooth Sub-Bass on beat 0, 3, 6
+                if (beatInBar === 0 || beatInBar === 3 || beatInBar === 6) {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(BGM_BASS[chordIdx], now);
+                    gain.gain.setValueAtTime(0.001, now);
+                    gain.gain.linearRampToValueAtTime(0.32, now + 0.03);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+                    osc.connect(gain);
+                    gain.connect(bgmMasterGain);
+                    osc.start(now);
+                    osc.stop(now + 0.48);
+                }
+
+                // 3) Soft Lo-fi Pluck Melody
+                const melFreq = BGM_MELODY[bgmStep % 32];
+                if (melFreq > 0) {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(melFreq, now);
+                    gain.gain.setValueAtTime(0.001, now);
+                    gain.gain.linearRampToValueAtTime(0.09, now + 0.02);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+                    osc.connect(gain);
+                    gain.connect(bgmMasterGain);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                }
+
+                // 4) Soft Kick (beat 0, 4) & Soft Hi-Hat (every even/odd gently)
+                if (beatInBar === 0 || beatInBar === 4) {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(120, now);
+                    osc.frequency.exponentialRampToValueAtTime(42, now + 0.12);
+                    gain.gain.setValueAtTime(0.28, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+                    osc.connect(gain);
+                    gain.connect(bgmMasterGain);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                }
+                if (beatInBar === 2 || beatInBar === 6) {
+                    // Soft snare/clap noise burst
+                    playNoiseHit(now, 0.06, 0.07, 1800);
+                } else {
+                    // Tiny lo-fi hi-hat tick
+                    playNoiseHit(now, 0.025, 0.025, 6500);
+                }
+
+                bgmStep++;
+            }, stepMs);
+        }
+
+        function playNoiseHit(time, duration, volume, filterFreq) {
+            if (!audioCtx || !bgmMasterGain) return;
+            const bufferSize = Math.floor(audioCtx.sampleRate * duration);
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'highpass';
+            filter.frequency.value = filterFreq;
+
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(volume, time);
+            gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
+
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(bgmMasterGain);
+            noise.start(time);
+            noise.stop(time + duration);
+        }
+
+        function toggleBgm() {
+            initAudio();
+            bgmEnabled = !bgmEnabled;
+            if (bgmMasterGain && audioCtx) {
+                bgmMasterGain.gain.setTargetAtTime(bgmEnabled ? 0.22 : 0.0, audioCtx.currentTime, 0.08);
+            }
+            const icon = document.getElementById('iconBgm');
+            const label = document.getElementById('labelBgm');
+            const btn = document.getElementById('btnToggleBgm');
+            if (bgmEnabled) {
+                icon.className = 'fa-solid fa-music';
+                label.textContent = 'เพลง: เปิด';
+                btn.classList.remove('opacity-50');
+                if (!bgmTimer) startBgm();
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark';
+                label.textContent = 'เพลง: ปิด';
+                btn.classList.add('opacity-50');
+            }
+        }
+
+        function toggleSfx() {
+            initAudio();
+            sfxEnabled = !sfxEnabled;
+            const icon = document.getElementById('iconSfx');
+            const label = document.getElementById('labelSfx');
+            const btn = document.getElementById('btnToggleSfx');
+            if (sfxEnabled) {
+                icon.className = 'fa-solid fa-volume-high';
+                label.textContent = 'เอฟเฟกต์: เปิด';
+                btn.classList.remove('opacity-50');
+                playSfxClick();
+            } else {
+                icon.className = 'fa-solid fa-volume-off';
+                label.textContent = 'เอฟเฟกต์: ปิด';
+                btn.classList.add('opacity-50');
+            }
+        }
+
+        /* --- Sound Effects (SFX) --- */
+        function playSfxClick() {
+            if (!sfxEnabled) return;
+            initAudio();
+            if (!audioCtx) return;
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(620, now);
+            osc.frequency.exponentialRampToValueAtTime(920, now + 0.06);
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.08);
+        }
+
+        function playSfxCorrect() {
+            if (!sfxEnabled) return;
+            initAudio();
+            if (!audioCtx) return;
+            const now = audioCtx.currentTime;
+            // Bright Major Arpeggio Chime (C5, E5, G5, C6)
+            const notes = [523.25, 659.25, 783.99, 1046.50];
+            notes.forEach((freq, idx) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                const t = now + idx * 0.085;
+                osc.frequency.setValueAtTime(freq, t);
+                gain.gain.setValueAtTime(0.001, t);
+                gain.gain.linearRampToValueAtTime(0.22, t + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(t);
+                osc.stop(t + 0.48);
+            });
+        }
+
+        function playSfxWrong() {
+            if (!sfxEnabled) return;
+            initAudio();
+            if (!audioCtx) return;
+            const now = audioCtx.currentTime;
+            // Soft gentle descending tone (not jarring)
+            const notes = [311.13, 261.63];
+            notes.forEach((freq, idx) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                const t = now + idx * 0.14;
+                osc.frequency.setValueAtTime(freq, t);
+                osc.frequency.exponentialRampToValueAtTime(freq * 0.92, t + 0.22);
+                gain.gain.setValueAtTime(0.18, t);
+                gain.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(t);
+                osc.stop(t + 0.3);
+            });
+        }
+
+        function playSfxLifeline() {
+            if (!sfxEnabled) return;
+            initAudio();
+            if (!audioCtx) return;
+            const now = audioCtx.currentTime;
+            // Futuristic Swoosh
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(280, now);
+            osc.frequency.exponentialRampToValueAtTime(1280, now + 0.28);
+            gain.gain.setValueAtTime(0.01, now);
+            gain.gain.linearRampToValueAtTime(0.18, now + 0.12);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.34);
+        }
+
+        function playSfxVictory() {
+            if (!sfxEnabled) return;
+            initAudio();
+            if (!audioCtx) return;
+            const now = audioCtx.currentTime;
+            // Celebratory Fanfare
+            const seq = [
+                { f: 523.25, t: 0.00, d: 0.18 },
+                { f: 659.25, t: 0.15, d: 0.18 },
+                { f: 783.99, t: 0.30, d: 0.18 },
+                { f: 1046.50, t: 0.48, d: 0.55 },
+                { f: 783.99, t: 0.65, d: 0.45 },
+                { f: 1046.50, t: 0.85, d: 0.75 }
+            ];
+            seq.forEach(n => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(n.f, now + n.t);
+                gain.gain.setValueAtTime(0.001, now + n.t);
+                gain.gain.linearRampToValueAtTime(0.22, now + n.t + 0.03);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now + n.t);
+                osc.stop(now + n.t + n.d + 0.05);
+            });
+        }
+
+        /* =========================================================
+           4. CORE GAME FUNCTIONS
+           ========================================================= */
+        function formatBaht(num) {
+            return '฿' + num.toLocaleString('th-TH');
+        }
+
+        function startGame() {
+            initAudio();
+            playSfxClick();
+            if (bgmEnabled) startBgm();
+
+            currentIndex = 0;
+            totalPrize = 0;
+            correctCount = 0;
+            isAnswered = false;
+            questionResults = [];
+            lifelines = { fifty: true, audience: true, friend: true };
+            eliminatedIndices = [];
+
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('endScreen').classList.add('hidden');
+            document.getElementById('gameScreen').classList.remove('hidden');
+
+            updateLifelineButtons();
+            renderQuestion();
+            updateStatsAndLadders();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function restartGame() {
+            stopConfetti();
+            startGame();
+        }
+
+        function renderQuestion() {
+            const qData = QUESTIONS[currentIndex];
+            isAnswered = false;
+            eliminatedIndices = [];
+
+            // Header & Progress
+            document.getElementById('qNumberDisplay').textContent = currentIndex + 1;
+            document.getElementById('qPrizeDisplay').textContent = formatBaht(PRIZE_LADDER[currentIndex]);
+            document.getElementById('progressBar').style.width = `${((currentIndex + 1) / QUESTIONS.length) * 100}%`;
+
+            // Question Text with subtle entrance animation
+            const qCard = document.getElementById('questionCard');
+            qCard.classList.remove('fade-in-up');
+            void qCard.offsetWidth;
+            qCard.classList.add('fade-in-up');
+            document.getElementById('questionText').textContent = `${currentIndex + 1}. ${qData.q}`;
+
+            // Hide feedback box
+            document.getElementById('feedbackBox').classList.add('hidden');
+
+            // Render 4 Options
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            qData.options.forEach((optText, idx) => {
+                const btn = document.createElement('button');
+                btn.id = `optBtn-${idx}`;
+                btn.className = 'option-btn w-full text-left rounded-2xl p-4 sm:p-5 flex items-center gap-3.5 cursor-pointer';
+                btn.onclick = () => selectAnswer(idx);
+
+                btn.innerHTML = `
+                    <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 font-extrabold text-sm sm:text-base flex items-center justify-center shrink-0">
+                        ${CHOICE_LABELS[idx]}
+                    </span>
+                    <span class="text-sm sm:text-base font-medium text-slate-100 leading-snug">
+                        ${optText}
+                    </span>
+                `;
+                container.appendChild(btn);
+            });
+
+            updateLifelineButtons();
+            updateStatsAndLadders();
+        }
+
+        function selectAnswer(selectedIdx) {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            const qData = QUESTIONS[currentIndex];
+            const isCorrect = selectedIdx === qData.answer;
+            const stepPrize = PRIZE_LADDER[currentIndex];
+
+            if (isCorrect) {
+                correctCount++;
+                totalPrize += stepPrize;
+                playSfxCorrect();
+            } else {
+                playSfxWrong();
+            }
+
+            // Record result
+            questionResults.push({
+                qIndex: currentIndex,
+                selected: selectedIdx,
+                isCorrect: isCorrect,
+                prizeWon: isCorrect ? stepPrize : 0
+            });
+
+            // Highlight Options & Lock all
+            qData.options.forEach((_, idx) => {
+                const btn = document.getElementById(`optBtn-${idx}`);
+                btn.disabled = true;
+                btn.classList.remove('cursor-pointer');
+
+                if (idx === qData.answer) {
+                    btn.classList.add('correct');
+                } else if (idx === selectedIdx && !isCorrect) {
+                    btn.classList.add('wrong');
+                }
+            });
+
+            // Disable lifelines while reviewing current question
+            updateLifelineButtons();
+
+            // Show Feedback Box immediately
+            const fbBox = document.getElementById('feedbackBox');
+            const fbIcon = document.getElementById('feedbackIcon');
+            const fbTitle = document.getElementById('feedbackTitle');
+            const fbExp = document.getElementById('feedbackExplanation');
+            const nextLabel = document.getElementById('btnNextLabel');
+
+            fbBox.classList.remove('hidden', 'border-emerald-400/60', 'border-rose-400/60');
+
+            if (isCorrect) {
+                fbBox.classList.add('border-emerald-400/60');
+                fbIcon.className = 'w-11 h-11 rounded-2xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 flex items-center justify-center text-xl shrink-0';
+                fbIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                fbTitle.className = 'text-base sm:text-lg font-extrabold text-emerald-300 mb-1';
+                fbTitle.textContent = `ถูกต้อง! รับเงินรางวัล +${formatBaht(stepPrize)} 🎉`;
+            } else {
+                fbBox.classList.add('border-rose-400/60');
+                fbIcon.className = 'w-11 h-11 rounded-2xl bg-rose-500/20 border border-rose-400/50 text-rose-300 flex items-center justify-center text-xl shrink-0';
+                fbIcon.innerHTML = '<i class="fa-solid fa-lightbulb"></i>';
+                fbTitle.className = 'text-base sm:text-lg font-extrabold text-rose-300 mb-1';
+                fbTitle.textContent = `ยังไม่ถูกนะ! คำตอบที่ถูกคือข้อ ${CHOICE_LABELS[qData.answer]} (ไปต่อได้เลย ไม่ Game Over!)`;
+            }
+
+            fbExp.textContent = `💡 เหตุผล: ${qData.explanation}`;
+            nextLabel.textContent = currentIndex === QUESTIONS.length - 1 ? 'ดูผลคะแนน & สรุปบทเรียน' : 'ข้อถัดไป';
+
+            updateStatsAndLadders();
+        }
+
+        function nextQuestion() {
+            playSfxClick();
+            if (currentIndex < QUESTIONS.length - 1) {
+                currentIndex++;
+                renderQuestion();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                showEndScreen();
+            }
+        }
+
+        function updateStatsAndLadders() {
+            // Update counters
+            document.getElementById('deskTotalPrize').textContent = formatBaht(totalPrize);
+            document.getElementById('mobTotalPrize').textContent = formatBaht(totalPrize);
+            document.getElementById('deskCorrectCount').textContent = correctCount;
+            document.getElementById('deskAnsweredCount').textContent = questionResults.length;
+            document.getElementById('mobCorrectCount').textContent = correctCount;
+            document.getElementById('mobQNum').textContent = currentIndex + 1;
+
+            // Desktop Ladder (15 down to 1)
+            const deskLadder = document.getElementById('desktopLadder');
+            deskLadder.innerHTML = '';
+            for (let i = QUESTIONS.length - 1; i >= 0; i--) {
+                const res = questionResults.find(r => r.qIndex === i);
+                const isCurrent = i === currentIndex;
+
+                let rowClass = 'bg-white/5 border border-transparent text-slate-400';
+                let statusIcon = '<span class="w-2 h-2 rounded-full bg-slate-600"></span>';
+
+                if (res) {
+                    if (res.isCorrect) {
+                        rowClass = 'ladder-correct text-emerald-300 font-semibold';
+                        statusIcon = '<i class="fa-solid fa-check text-emerald-400 text-xs"></i>';
+                    } else {
+                        rowClass = 'ladder-wrong text-rose-300/80 line-through';
+                        statusIcon = '<i class="fa-solid fa-xmark text-rose-400 text-xs"></i>';
+                    }
+                } else if (isCurrent) {
+                    rowClass = 'ladder-active text-yellow-300 font-bold scale-[1.02]';
+                    statusIcon = '<i class="fa-solid fa-bolt text-yellow-300 text-xs animate-pulse"></i>';
+                }
+
+                const row = document.createElement('div');
+                row.className = `flex items-center justify-between px-3 py-1.5 rounded-xl text-xs transition ${rowClass}`;
+                row.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="w-5 text-center opacity-80">${i + 1}</span>
+                        ${statusIcon}
+                    </div>
+                    <span>${formatBaht(PRIZE_LADDER[i])}</span>
+                `;
+                deskLadder.appendChild(row);
+            }
+
+            // Mobile Horizontal Ladder (1 to 15)
+            const mobLadder = document.getElementById('mobileLadder');
+            mobLadder.innerHTML = '';
+            for (let i = 0; i < QUESTIONS.length; i++) {
+                const res = questionResults.find(r => r.qIndex === i);
+                const isCurrent = i === currentIndex;
+
+                let pillClass = 'bg-white/5 border-white/10 text-slate-400';
+                if (res) {
+                    pillClass = res.isCorrect
+                        ? 'bg-emerald-500/20 border-emerald-400/60 text-emerald-300'
+                        : 'bg-rose-500/20 border-rose-400/50 text-rose-300';
+                } else if (isCurrent) {
+                    pillClass = 'bg-yellow-400/25 border-yellow-400 text-yellow-200 font-bold shadow-[0_0_10px_rgba(255,215,0,0.4)]';
+                }
+
+                const pill = document.createElement('div');
+                pill.id = `mobStep-${i}`;
+                pill.className = `px-2.5 py-1 rounded-xl border text-[11px] flex items-center gap-1 shrink-0 ${pillClass}`;
+                pill.innerHTML = `
+                    <span>${i + 1}</span>
+                    ${res ? (res.isCorrect ? '<i class="fa-solid fa-check text-[9px]"></i>' : '<i class="fa-solid fa-xmark text-[9px]"></i>') : ''}
+                `;
+                mobLadder.appendChild(pill);
+            }
+
+            // Auto-scroll active step into view on mobile
+            const activeMobPill = document.getElementById(`mobStep-${currentIndex}`);
+            if (activeMobPill) {
+                activeMobPill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+        }
+
+        /* =========================================================
+           5. LIFELINES (50:50, Audience Poll, Phone a Friend)
+           ========================================================= */
+        function updateLifelineButtons() {
+            document.getElementById('life5050').disabled = !lifelines.fifty || isAnswered;
+            document.getElementById('lifeAudience').disabled = !lifelines.audience || isAnswered;
+            document.getElementById('lifeFriend').disabled = !lifelines.friend || isAnswered;
+        }
+
+        function useLifeline5050() {
+            if (!lifelines.fifty || isAnswered) return;
+            lifelines.fifty = false;
+            playSfxLifeline();
+
+            const correctIdx = QUESTIONS[currentIndex].answer;
+            const wrongIndices = [0, 1, 2, 3].filter(i => i !== correctIdx);
+            // Shuffle wrong indices and pick 2 to eliminate
+            wrongIndices.sort(() => Math.random() - 0.5);
+            eliminatedIndices = wrongIndices.slice(0, 2);
+
+            eliminatedIndices.forEach(idx => {
+                const btn = document.getElementById(`optBtn-${idx}`);
+                if (btn) {
+                    btn.disabled = true;
+                    btn.classList.add('eliminated');
+                }
+            });
+
+            updateLifelineButtons();
+        }
+
+        function useLifelineAudience() {
+            if (!lifelines.audience || isAnswered) return;
+            lifelines.audience = false;
+            playSfxLifeline();
+            updateLifelineButtons();
+
+            const correctIdx = QUESTIONS[currentIndex].answer;
+            const activeIndices = [0, 1, 2, 3].filter(i => !eliminatedIndices.includes(i));
+
+            // Generate realistic poll percentages favoring the correct answer
+            let percents = [0, 0, 0, 0];
+            let remaining = 100;
+            const correctPct = Math.floor(Math.random() * 21) + 56; // 56% - 76%
+            percents[correctIdx] = correctPct;
+            remaining -= correctPct;
+
+            const otherActive = activeIndices.filter(i => i !== correctIdx);
+            otherActive.forEach((idx, i) => {
+                if (i === otherActive.length - 1) {
+                    percents[idx] = remaining;
+                } else {
+                    const val = Math.floor(Math.random() * (remaining + 1));
+                    percents[idx] = val;
+                    remaining -= val;
+                }
+            });
+
+            document.getElementById('modalHeader').innerHTML = `
+                <div class="w-11 h-11 rounded-2xl bg-pink-500/20 border border-pink-400/50 text-pink-300 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-lg text-pink-200">ผลโหวตจากผู้ชมในห้องส่ง</h3>
+                    <p class="text-xs text-slate-400">ผู้ชมสายการเงินร่วมโหวตคำตอบที่มั่นใจที่สุด</p>
+                </div>
+            `;
+
+            let barsHtml = '<div class="space-y-3">';
+            for (let i = 0; i < 4; i++) {
+                const isElim = eliminatedIndices.includes(i);
+                const barColor = i === correctIdx ? 'from-cyan-400 to-pink-400' : 'from-indigo-500 to-purple-500';
+                barsHtml += `
+                    <div class="${isElim ? 'opacity-30' : ''}">
+                        <div class="flex justify-between text-xs font-bold mb-1">
+                            <span class="text-slate-200">ตัวเลือก ${CHOICE_LABELS[i]}</span>
+                            <span class="text-cyan-300">${percents[i]}%</span>
+                        </div>
+                        <div class="w-full h-3.5 rounded-full bg-white/10 overflow-hidden">
+                            <div class="h-full rounded-full bg-gradient-to-r ${barColor} transition-all duration-700" style="width: ${percents[i]}%"></div>
+                        </div>
+                    </div>
+                `;
+            }
+            barsHtml += '</div>';
+            document.getElementById('modalBody').innerHTML = barsHtml;
+            document.getElementById('lifelineModal').classList.remove('hidden');
+        }
+
+        function useLifelineFriend() {
+            if (!lifelines.friend || isAnswered) return;
+            lifelines.friend = false;
+            playSfxLifeline();
+            updateLifelineButtons();
+
+            const hint = QUESTIONS[currentIndex].friendHint;
+
+            document.getElementById('modalHeader').innerHTML = `
+                <div class="w-11 h-11 rounded-2xl bg-yellow-500/20 border border-yellow-400/50 text-yellow-300 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-lg text-yellow-200">แชทจาก "น้องแบงก์" เพื่อนสายการเงิน</h3>
+                    <p class="text-xs text-emerald-400"><i class="fa-solid fa-circle text-[8px] mr-1"></i>กำลังออนไลน์ • ตอบไวมาก</p>
+                </div>
+            `;
+
+            document.getElementById('modalBody').innerHTML = `
+                <div class="bg-[#120d2e] border border-white/10 rounded-2xl p-4 space-y-3">
+                    <div class="flex justify-end">
+                        <div class="bg-cyan-500/20 border border-cyan-400/30 text-cyan-100 text-xs sm:text-sm px-3.5 py-2 rounded-2xl rounded-tr-sm max-w-[85%]">
+                            แก! ข้อนี้ช่วยหน่อย ตอบไรดีอะ? 🥹
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-pink-500 flex items-center justify-center text-xs font-extrabold text-[#0b061d] shrink-0">
+                            B
+                        </div>
+                        <div class="bg-white/10 border border-yellow-400/30 text-slate-100 text-xs sm:text-sm px-3.5 py-2.5 rounded-2xl rounded-tl-sm leading-relaxed">
+                            "${hint}" 💡✨
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('lifelineModal').classList.remove('hidden');
+        }
+
+        function closeLifelineModal() {
+            playSfxClick();
+            document.getElementById('lifelineModal').classList.add('hidden');
+        }
+
+        /* =========================================================
+           6. END SCREEN, RANKING & REVIEW LIST
+           ========================================================= */
+        function showEndScreen() {
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('endScreen').classList.remove('hidden');
+
+            playSfxVictory();
+            launchConfetti();
+
+            const percent = Math.round((correctCount / QUESTIONS.length) * 100);
+            const usedLifelines = [!lifelines.fifty, !lifelines.audience, !lifelines.friend].filter(Boolean).length;
+
+            // Determine Rank
+            let emoji = '🌱', title = '', subtitle = '';
+            if (correctCount >= 13) {
+                emoji = '👑';
+                title = 'มหาเศรษฐีตัวตึงด้านการเงิน';
+                subtitle = 'สุดยอดระดับท็อป! คุณเชี่ยวชาญการบริหารเงินสดและสินทรัพย์สภาพคล่องแบบมืออาชีพ พร้อมลุยข้อสอบเต็ม 100!';
+            } else if (correctCount >= 10) {
+                emoji = '💎';
+                title = 'นักบริหารเงินสดมือโปร';
+                subtitle = 'เก่งมาก! เข้าใจหลักการสำคัญเกือบทั้งหมดแล้ว อ่านสรุปด้านล่างทบทวนอีกนิดเดียวปังแน่นอน';
+            } else if (correctCount >= 6) {
+                emoji = '🚀';
+                title = 'ดาวรุ่งสายออมเงิน';
+                subtitle = 'เริ่มต้นได้ดีเลย! ลองอ่านสรุปบทที่ 3 ด้านล่างและทบทวนข้อที่พลาด รับรองรอบหน้าคะแนนพุ่ง!';
+            } else {
+                emoji = '🌱';
+                title = 'มือใหม่สายออม (สู้ต่อไปนะ!)';
+                subtitle = 'ไม่เป็นไรเลย! การฝึกฝนคือจุดเริ่มต้นของความเก่ง ลองอ่านการ์ดสรุปบทเรียนด้านล่างแล้วมาแก้มือกันใหม่นะ';
+            }
+
+            document.getElementById('rankEmoji').textContent = emoji;
+            document.getElementById('rankTitle').textContent = title;
+            document.getElementById('rankSubtitle').textContent = subtitle;
+            document.getElementById('finalScoreText').textContent = `${correctCount} / ${QUESTIONS.length}`;
+            document.getElementById('finalPercentText').textContent = `คิดเป็น ${percent}%`;
+            document.getElementById('finalPrizeText').textContent = formatBaht(totalPrize);
+            document.getElementById('finalLifelinesText').textContent = `${usedLifelines} / 3`;
+
+            renderReviewList();
+            switchEndTab('summary');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderReviewList() {
+            const container = document.getElementById('tabContentReview');
+            container.innerHTML = '';
+
+            QUESTIONS.forEach((qData, idx) => {
+                const res = questionResults.find(r => r.qIndex === idx);
+                const isCorrect = res ? res.isCorrect : false;
+                const userSelected = res ? res.selected : -1;
+
+                const card = document.createElement('div');
+                card.className = `glass-panel rounded-2xl p-4 sm:p-5 border-l-4 ${isCorrect ? 'border-l-emerald-400' : 'border-l-rose-400'}`;
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-3 mb-2">
+                        <div class="font-bold text-sm sm:text-base text-white">
+                            <span class="text-cyan-300 mr-1">ข้อ ${idx + 1}.</span> ${qData.q}
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold shrink-0 ${isCorrect ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">
+                            ${isCorrect ? '✓ ถูก (+' + formatBaht(PRIZE_LADDER[idx]) + ')' : '✗ ผิด'}
+                        </span>
+                    </div>
+                    <div class="text-xs sm:text-sm space-y-1 mb-2.5">
+                        <div class="${isCorrect ? 'text-emerald-300' : 'text-rose-300'}">
+                            <strong>คำตอบของคุณ:</strong> ${userSelected >= 0 ? CHOICE_LABELS[userSelected] + '. ' + qData.options[userSelected] : '-'}
+                        </div>
+                        ${!isCorrect ? `
+                        <div class="text-emerald-300">
+                            <strong>คำตอบที่ถูกต้อง:</strong> ${CHOICE_LABELS[qData.answer]}. ${qData.options[qData.answer]}
+                        </div>` : ''}
+                    </div>
+                    <div class="text-xs sm:text-sm text-slate-300 bg-white/5 rounded-xl p-3 border border-white/10">
+                        <strong class="text-yellow-300">💡 เฉลย:</strong> ${qData.explanation}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function switchEndTab(tabName) {
+            playSfxClick();
+            const btnSum = document.getElementById('tabBtnSummary');
+            const btnRev = document.getElementById('tabBtnReview');
+            const contentSum = document.getElementById('tabContentSummary');
+            const contentRev = document.getElementById('tabContentReview');
+
+            const activeStyle = 'px-5 py-3 rounded-2xl font-bold text-sm sm:text-base transition flex items-center gap-2 cursor-pointer border-2 border-cyan-400 bg-cyan-500/20 text-cyan-200 shadow-[0_0_18px_rgba(0,240,255,0.25)]';
+            const inactiveStyle = 'px-5 py-3 rounded-2xl font-bold text-sm sm:text-base transition flex items-center gap-2 cursor-pointer border-2 border-white/15 bg-white/5 text-slate-300 hover:bg-white/10';
+
+            if (tabName === 'summary') {
+                btnSum.className = activeStyle;
+                btnRev.className = inactiveStyle;
+                contentSum.classList.remove('hidden');
+                contentRev.classList.add('hidden');
+            } else {
+                btnRev.className = activeStyle;
+                btnSum.className = inactiveStyle;
+                contentRev.classList.remove('hidden');
+                contentSum.classList.add('hidden');
+            }
+        }
+
+        /* =========================================================
+           7. CONFETTI CELEBRATION ENGINE (Responsive Canvas)
+           ========================================================= */
+        const confettiCanvas = document.getElementById('confettiCanvas');
+        const ctx = confettiCanvas.getContext('2d');
+        let confettiPieces = [];
+        let confettiAnimId = null;
+
+        function resizeConfetti() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeConfetti);
+        resizeConfetti();
+
+        function launchConfetti() {
+            stopConfetti();
+            const colors = ['#ffd700', '#00f0ff', '#ff71ce', '#00ff9d', '#a855f7', '#ffffff'];
+            confettiPieces = [];
+            for (let i = 0; i < 130; i++) {
+                confettiPieces.push({
+                    x: Math.random() * confettiCanvas.width,
+                    y: Math.random() * -confettiCanvas.height,
+                    w: Math.random() * 9 + 5,
+                    h: Math.random() * 5 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedY: Math.random() * 3.5 + 2,
+                    speedX: Math.random() * 2 - 1,
+                    angle: Math.random() * 360,
+                    spin: Math.random() * 6 - 3
+                });
+            }
+
+            let frames = 0;
+            function animateConfetti() {
+                ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                confettiPieces.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX + Math.sin(p.angle * 0.03) * 0.6;
+                    p.angle += p.spin;
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.angle * Math.PI) / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = frames > 220 ? Math.max(0, 1 - (frames - 220) / 80) : 0.95;
+                    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                    ctx.restore();
+
+                    if (p.y > confettiCanvas.height + 20 && frames < 180) {
+                        p.y = -15;
+                        p.x = Math.random() * confettiCanvas.width;
+                    }
+                });
+
+                frames++;
+                if (frames < 300) {
+                    confettiAnimId = requestAnimationFrame(animateConfetti);
+                } else {
+                    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                    confettiAnimId = null;
+                }
+            }
+            animateConfetti();
+        }
+
+        function stopConfetti() {
+            if (confettiAnimId) {
+                cancelAnimationFrame(confettiAnimId);
+                confettiAnimId = null;
+            }
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        }
+    </script>
+</body>
+</html>
